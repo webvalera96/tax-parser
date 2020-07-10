@@ -1,0 +1,4 @@
+pandas
+xlsxwriter
+click
+python-docx
