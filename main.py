@@ -12,6 +12,8 @@ import logging
 
 tk.Tk().withdraw()
 
+print('Парсер расчетных такс ПАО "МТС" в формате .docx')
+
 # Запрос у пользователя файла для анализа
 filename = tk.filedialog.askopenfilename(
     title='Выберите файл...',
@@ -26,12 +28,12 @@ if filename == '':
     )
     raise Exception('Файл в формате .docx не был выбран.')
 
-logging.info(f' Начато получение табличных данных из файла {filename}')
+print(f' Начато получение табличных данных из файла {filename}')
 #TODO Обработка исключительных ситуаций
 tax_tables = read_docx_tables(filename)
-logging.info(f'Данные успешно импортрированы из файла {filename}')
+print(f'Данные успешно импортрированы из файла {filename}')
 
-logging.info(f'Начата обработка данных')
+print(f'Начата обработка данных')
 # Обработка данных
 n_tax_tables = []
 for tax_table in tax_tables:
@@ -72,11 +74,11 @@ for tax_table in tax_tables:
             n_tax_table = n_tax_table.append(pd.Series(row, index=tax_table.columns), ignore_index=True)
 
     n_tax_tables.append(n_tax_table)
-logging.info(f'Обработка данных закончена')
+print(f'Обработка данных закончена')
 
 
 # Запись данных в файл
-logging.info(f'Укажите путь для сохранения файла')
+print(f'Укажите путь для сохранения файла')
 out_filename = tk.filedialog.asksaveasfilename(
     filetypes=(('Microsoft Excel 2007+','*.xlsx'),),
     defaultextension='.xlsx'    
@@ -92,3 +94,5 @@ for df in n_tax_tables:
     index += 1
 
 writer.save()
+print('Работа программы завершена')
+input("Для продолжения нажмите Enter ...")

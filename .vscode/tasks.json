@@ -1,0 +1,38 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "venv-enable",
+      "command" : "${workspaceFolder}\\venv\\Scripts\\activate.bat"
+    },
+    {
+      "label": "Build main.py (venv, pyinstaller)",
+      "command": "${workspaceFolder}\\venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "PyInstaller",
+        "-F",
+        "${workspaceFolder}\\main.py",
+        "-n",
+        "mts_tax_parser.exe"
+      ],
+      "dependsOn": [
+        "venv-enable"
+      ],
+      "problemMatcher": [],
+      "presentation": {
+          "echo": true,
+          "reveal": "always",
+          "focus": true,
+          "panel": "shared"
+      },
+      "group": {
+          "kind": "build",
+          "isDefault": true
+
+      }
+  },
+  ]
+}

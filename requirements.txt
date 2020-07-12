@@ -2,3 +2,5 @@ pandas
 xlsxwriter
 click
 python-docx
+pyinstaller
+setuptools
